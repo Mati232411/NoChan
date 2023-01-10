@@ -1,0 +1,26 @@
+.topbar {
+    position:fixed;
+    padding: 2px;
+    font-size: 1;
+    top: 5;
+    left: 5;
+    width: max-width;
+    background-color: black;
+    border: 5px solid gray;
+}
+.bottom_clear {
+    position: fixed;
+    bottom: 5px;
+}
+body {
+    background-color: black;
+} 
+h1 {
+    color: snow;
+}
+h2 {
+    color: snow;
+}
+td {
+    color: gray;
+}

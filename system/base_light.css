@@ -1,0 +1,14 @@
+.topbar {
+    position:fixed;
+    padding: 2px;
+    font-size: 1;
+    top: 5;
+    left: 5;
+    width: max-width;
+    background-color: snow;
+    border: 5px solid black;
+}
+.bottom_clear {
+    position: fixed;
+    bottom: 5px;
+}
