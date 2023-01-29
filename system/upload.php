@@ -19,7 +19,25 @@ $file=reset($_FILES);
 if(empty($file['size'])){
     die('{"success": false, "msg": "Please provide a file"}');
 }
-
+$fileType=mime_content_type($file['tmp_name']);
+if ($fileType != "image/png") {
+	if ($fileType != "image/jpeg") {
+		if($fileType != "image/gif") {
+	die("You can only upload images in format: png, jpeg, gif. You uploaded $fileType");
+	}}		
+}
+if($_POST['type'] == "pfp") {
+	$uploadPath="/srv/nochan/thm/";
+	$qname = $udata['qname'];
+	$ext = str_replace("image/", '', $fileType);
+	$filename = $qname."_pfp.".$ext;
+	move_uploaded_file($file['tmp_name'], $uploadPath.$filename);
+	$filename2 = $qname."_pfp.png";
+	$full_shell_exec="/usr/bin/convert /srv/nochan/thm/$filename /srv/nochan/thm/$filename2 && rm /srv/nochan/thm/$filename";
+	shell_exec($full_shell_exec);
+	header("Location: /profile.php");
+	die();
+}
 
 //Calculating the image number
 $result = mysqli_query($con,"SELECT charnum FROM img WHERE charname='{$charname_orig}';");

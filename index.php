@@ -1,5 +1,6 @@
 <?php
 include("/var/www/html/system/general.php");
+setcookie('page', $_GET['page'], 0, '/', null);
 if (isMobile()) {
     $mobile = 1;
 }
@@ -62,6 +63,7 @@ $darkmode=$_COOKIE['theme'];
             <form id='button' action='/login.php' method='post'><input id='button' type='submit' value='Login'></form>
             <form id='button' action='/register.php' method='post'><input id='button' type='submit' value='Sign Up'></form>
             "; } elseif($loggedin == "1") { echo "
+	<form id='button' action='/profile.php'><input id='button' type='submit' value='Profile'></form>
             <form id='button' action='/upload.php' method='post'><input id='button' type='submit' value='Upload'></form>
             ";
             }
@@ -96,9 +98,9 @@ $darkmode=$_COOKIE['theme'];
                         ?>
                     
                     <tr>
-                        <td><a href="/store/<?php echo $row['name']; ?>"><img width=256 src=/thm/<?php echo $row['name']; ?>></a></td>
+                        <td><a href="/info.php?gnum=<?php echo $row['gnum']; ?>"><img width=256 src=/thm/<?php echo $row['name']; ?>></a></td>
                         <td><p><a href='/<?php echo $full_parameter; ?>'><?php echo $row["charname"]; ?></a></p></td>
-                        <td><?php echo $row["uploader"]; ?></td>
+			<td><a href="/profile.php?qname=<?php $uname2 = $row['uploader']; echo getqname($con,$uname2); ?>"><?php echo $row["uploader"]; ?></a></td>
                     </tr>
                     <?php
                         $i2++; $i++;

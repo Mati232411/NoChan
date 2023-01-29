@@ -12,15 +12,7 @@
     position: fixed;
     bottom: 5px;
 }
-body {
-    background-color: black;
-} 
-h1 {
-    color: snow;
-}
-h2 {
-    color: snow;
-}
-td {
-    color: gray;
-}
+body {background-color: black;} 
+h1 {color: snow;}
+h2 {color: snow;}
+td {color: gray;}

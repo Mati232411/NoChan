@@ -7,7 +7,7 @@ $result = mysqli_query($con,$query);
 $user_data = mysqli_fetch_assoc($result);
 return $user_data;
 }
-function fav($con,$api,$uname) {
+function fav($con,$uname) {
     $query = "SELECT charname, COUNT(charname) AS `value_occurrence` FROM img WHERE uploader='$uname' GROUP BY charname ORDER BY `value_occurrence` DESC  LIMIT 1;";
     $result = mysqli_query($con,$query);
     $user_data = mysqli_fetch_assoc($result);
@@ -49,8 +49,16 @@ function pagesel($nextpage,$prevpage,$mobile,$max1,$other) {
         }
     
 }
+function getqname($con,$uname2) {
+    $query = "SELECT qname FROM users WHERE uname='$uname2';";
+    $result = mysqli_query($con,$query);
+    $tempdata = mysqli_fetch_assoc($result);
+    return $tempdata['qname'];
+}
 
+if (!empty($_COOKIE['apikey'])) {
 $udata = udata($con,$api);
 $uname = $udata['uname'];
-$fav = fav($con,$api,$uname);
+$fav = fav($con,$uname);
+}
 ?>

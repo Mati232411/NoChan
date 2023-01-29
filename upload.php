@@ -1,10 +1,14 @@
 <?php
 include("/var/www/html/system/general.php");
+$darkmode=$_COOKIE['theme'];
 ?>
 <html>
 <head>
     <title>Upload - NoChan</title>
+	<?php if($darkmode == "dark") {echo '<link rel="stylesheet" href="system/base_dark.css">'; } else {
+        echo '<link rel="stylesheet" href="system/base_light.css">';} ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=system/darkmode.js></script>
 </head>
 <body>
     <center><form action="/system/upload.php" method="post" enctype="multipart/form-data">
