@@ -26,7 +26,8 @@ if ($fileType != "image/png") {
 	die("You can only upload images in format: png, jpeg, gif. You uploaded $fileType");
 	}}		
 }
-if($_POST['type'] == "pfp") {
+switch($_POST['type']) {
+	case "pfp";
 	$uploadPath="/srv/nochan/thm/";
 	$qname = $udata['qname'];
 	$ext = str_replace("image/", '', $fileType);
@@ -37,6 +38,19 @@ if($_POST['type'] == "pfp") {
 	shell_exec($full_shell_exec);
 	header("Location: /profile.php");
 	die();
+	break;
+	case "wallpaper";
+        $uploadPath="/srv/nochan/thm/";
+        $qname = $udata['qname'];
+        $ext = str_replace("image/", '', $fileType);
+        $filename = $qname."_wall.".$ext;
+        move_uploaded_file($file['tmp_name'], $uploadPath.$filename);
+        $filename2 = $qname."_wall.png";
+        $full_shell_exec="/usr/bin/convert /srv/nochan/thm/$filename /srv/nochan/thm/$filename2 && rm /srv/nochan/thm/$filename";
+        shell_exec($full_shell_exec);
+        header("Location: /profile.php");
+        die();
+	break;
 }
 
 //Calculating the image number
